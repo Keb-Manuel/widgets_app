@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ButtonsScreen extends StatelessWidget {
   static const name = 'Buttons_Screen';
+
   const ButtonsScreen({super.key});
 
   @override
@@ -10,7 +12,50 @@ class ButtonsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Buttons screen"),
       ),
-      body: Placeholder(),
+      body: const _ButtonsView(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_back_ios_new_rounded),
+        onPressed: () {
+          context.pop();
+        },
+      ),
+    );
+  }
+}
+
+class _ButtonsView extends StatelessWidget {
+  const _ButtonsView();
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        child: Wrap(
+          spacing: 10,
+          alignment: WrapAlignment.center,
+          children: [
+            ElevatedButton(onPressed: (){}, child: const Text("Elevated")),
+            const ElevatedButton(onPressed: null, child: const Text("Elevated Button")),
+            ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.access_alarm_rounded), label: const Text("Elevated Icon")),
+            FilledButton(onPressed: (){}, child: const Text("Filled")),
+            FilledButton.icon(onPressed: (){}, icon: Icon(Icons.accessibility_new) ,label: const Text("Filled Icon")),
+            OutlinedButton(onPressed: (){}, child: const Text("Outlined")),
+            OutlinedButton.icon(onPressed: (){}, icon: Icon(Icons.terminal) ,label: const Text("Outlined icon")),
+            TextButton(onPressed: (){}, child: const Text("Text")),
+            TextButton.icon(onPressed: (){}, icon: Icon(Icons.account_box_outlined) ,label: const Text("Text")),
+
+            //Todo: Custom button
+
+            IconButton(onPressed: (){}, icon: Icon(Icons.app_registration_rounded)),
+            IconButton(onPressed: (){}, icon: const Icon(Icons.app_registration_rounded), style: ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll(colors.primaryContainer),
+              iconColor: const MaterialStatePropertyAll(Colors.white)))
+          ],
+        ),
+      ),
     );
   }
 }
