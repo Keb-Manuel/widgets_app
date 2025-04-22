@@ -47,13 +47,38 @@ class _ButtonsView extends StatelessWidget {
             TextButton(onPressed: (){}, child: const Text("Text")),
             TextButton.icon(onPressed: (){}, icon: Icon(Icons.account_box_outlined) ,label: const Text("Text")),
 
-            //Todo: Custom button
+            const CustomButton(),
 
             IconButton(onPressed: (){}, icon: Icon(Icons.app_registration_rounded)),
             IconButton(onPressed: (){}, icon: const Icon(Icons.app_registration_rounded), style: ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(colors.primaryContainer),
               iconColor: const MaterialStatePropertyAll(Colors.white)))
           ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    final colors = Theme.of(context).colorScheme;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Material(
+        color: colors.primary,
+        child: InkWell(
+          onTap: (){},
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text('Hello World', style: TextStyle(color: Colors.white))
+            ),
         ),
       ),
     );
